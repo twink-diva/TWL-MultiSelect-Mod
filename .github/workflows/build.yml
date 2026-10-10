@@ -1,0 +1,28 @@
+name: Build Mod DLL
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Build Project
+      run: dotnet build MultiSelectMod.csproj -c Release -o ./build
+
+    - name: Upload Mod DLL Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: MultiSelectMod-DLL
+        path: ./build/MultiSelectMod.dll
