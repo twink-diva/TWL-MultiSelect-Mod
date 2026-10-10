@@ -11,10 +11,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '6.0.x'
 
@@ -22,7 +22,7 @@ jobs:
       run: dotnet build MultiSelectMod.csproj -c Release -o ./build
 
     - name: Upload Mod DLL Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: MultiSelectMod-DLL
         path: ./build/MultiSelectMod.dll
